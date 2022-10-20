@@ -18,3 +18,28 @@
 ```
 
 * 위 과정을 거치면 app.js에서 ctrl + s를 통해 저장만 해도 자동 실행된다
+
+* 미들웨어를 ,를 통해서 여러개 등록 가능
+* 아래 예시코드처럼 throw를 통해 에러를 보내면 에러미들웨어로 이동한다
+
+```javascript
+app.get('/', (req, res, next) => {
+    console.log('GET / 요청에서만 실행됩니다.');
+    next();
+    // res.send('Hello, Express Upload');
+}, (req, res) => {
+    throw new Error('에러는 에러 처리 미들웨어로 갑니다.')
+});
+```
+
+* 인자가 4개면 에러미들웨어다
+
+```javascript
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).send(err.message);
+})
+```
+
+* next함수를 통해서 다음 미들웨어로 넘어가고 res.send를 하면 next를 이용하여 다음 미들웨어로 넘기지않아도 된다
+* 즉 app.get 콜백함수안에 next가 존재하지않았다면 다음 미들웨어인 "에러는 에러 처리 미들웨어로 갑니다." 부분을 보여주지않는다
