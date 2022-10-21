@@ -43,3 +43,6 @@ app.use((err, req, res, next) => {
 
 * next함수를 통해서 다음 미들웨어로 넘어가고 res.send를 하면 next를 이용하여 다음 미들웨어로 넘기지않아도 된다
 * 즉 app.get 콜백함수안에 next가 존재하지않았다면 다음 미들웨어인 "에러는 에러 처리 미들웨어로 갑니다." 부분을 보여주지않는다
+
+## Node morgan, cookie-parser, express-session 설치 
+* npm i morgan cookie-parser express-session dotenv
