@@ -1,3 +1,18 @@
+ # Step1 - Middleware
+npm init
+
+npm i express, morgan, dotenv, cookie-parser, express-session
+npm i -D nodemon
+
+# Step2 - Routing, nunjucks, bcrypt
+npm i nunjucks
+npm i bcrypt
+
+# Step3 - Sequelize
+npm i sequelize, sequelize-cli, mysql2
+npx sequelize init
+
+# 이외 명령어
 * npm i - 전체 설치
 * npm i -p - dependencies에 있는것만 설치 
 * npm i -D - devdependencies에 있는 것만 설치
