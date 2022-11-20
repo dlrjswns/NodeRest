@@ -27,10 +27,10 @@ const promise = new Promise(resolve => {
     console.log('before then1' + v);
     v += 1;
     console.log('after then' + v);
-    return new Promise(resolve => setTimeout(() => {
-        resolve()
-        console.log('newPromise' + v);
-    }, 601));
+    // return new Promise(resolve => setTimeout(() => {
+    //     resolve()
+    //     console.log('newPromise' + v);
+    // }, 601));
 })
 .then(() => {
     console.log('before then2' + v);
