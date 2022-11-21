@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const User = require('./user');
-const Comment = require('./comment');
+const Info = require('./info');
 
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config')[env]; // development의 데이터베이스 아이디 비번과 같은 정보를 가져오겠군
+const config = require('../config/config')[env];
 const db = {};
 
 const sequelize = new Sequelize(
@@ -14,13 +14,13 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.User = User;
-db.Comment = Comment;
+db.Info = Info;
 
 User.init(sequelize);
-Comment.init(sequelize);
+Info.init(sequelize);
 
 User.associate(db);
-Comment.associate(db);
+Info.associate(db);
 
 module.exports = db;
 

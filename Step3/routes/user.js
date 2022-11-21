@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt')
 const User = require('../models/user');
+const { Info } = require('../models');
 
 const router = express.Router();
 
@@ -21,7 +22,7 @@ router.route('/')
         }
     })
     .post(async (req, res, next) => {
-        const { id, password, name, description } = req.body;
+        const { id, password, name, description, address, phoneNum } = req.body;
 
         const user = await User.findOne({ where: { id } });
         if (user) {
@@ -37,6 +38,11 @@ router.route('/')
                 name,
                 description
             });
+
+            await Info.create({
+                address,
+                phoneNum
+            })
 
             res.redirect('/');
         } catch (err) {
@@ -96,7 +102,10 @@ router.get('/:id', async (req, res, next) => {
     try {
         const user = await User.findOne({
             where: { id: req.params.id },
-            attributes: ['id', 'name', 'description']
+            attributes: ['id', 'name', 'description'],
+            include: {
+                model: Info
+            }
         });
         res.json(user);
     } catch (err) {

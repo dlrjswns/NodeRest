@@ -10,8 +10,8 @@ const nunjucks = require('nunjucks');
 const { sequelize } = require('./models');
 
 const userRouter = require('./routes/user');
-const commentRouter = require('./routes/comment');
 const indexRouter = require('./routes');
+const infoRouter = require('./routes/info');
 
 dotenv.config();
 
@@ -47,7 +47,7 @@ app.use(
 );
 
 app.use('/user', userRouter);
-app.use('/comment', commentRouter);
+app.use('/info', infoRouter)
 app.use('/', indexRouter);
 
 app.use((req, res, next) => {
